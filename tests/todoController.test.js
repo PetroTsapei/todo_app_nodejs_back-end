@@ -6,11 +6,26 @@ describe('todo controller', () => {
         await db.sequelize.sync({ force: true })
     });
 
-    it('should get all todos', async () => {
+    beforeEach(async () => {
+        await db.TodoList.destroy({ truncate: true });
+    });
+
+    it('should get empty todo list', async () => {
         await todoController.getTodos({}, {
             render: (view, data) => {
                 expect(view).toBe('home');
                 expect(data.todolist.length).toBe(0);
+            },
+        });
+    });
+
+    it('should get todo list', async () => {
+        await db.TodoList.create({ name: 'Test todo' });
+        await todoController.getTodos({}, {
+            render: (view, data) => {
+                expect(view).toBe('home');
+                expect(data.todolist.length).toBe(1);
+                expect(data.todolist[0].name).toBe('Test todo');
             },
         });
     });

@@ -5,3 +5,9 @@ block content
         form(action='/add', method='POST', class='add-todo-form')
             input(type='text', name='name', placeholder='Type your task name...', autofocus)
             button(type='submit') Add
+
+        h2 To Do List
+        ul.tasks
+            each todo in todolist
+                ol
+                    span.todo-name= todo.name
