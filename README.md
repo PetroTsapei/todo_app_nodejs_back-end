@@ -1,7 +1,5 @@
 # todo_app_nodejs_back-end
 
-## Description
-
 This is a simple todo app back-end made with nodejs and express.
 
 ## Requirements:
@@ -61,6 +59,12 @@ This is a simple todo app back-end made with nodejs and express.
 
 ```bash
   npm start
+```
+
+## Running tests
+
+```bash
+  npm test
 ```
 
 ## Open the app

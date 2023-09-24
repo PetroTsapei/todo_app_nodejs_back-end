@@ -5,8 +5,12 @@ exports.getTodos = async (req, res) => {
 };
 
 exports.createTodo = async (req, res) => {
-    await db.TodoList.create({
-        name: req.body.name,
-    });
+    const { name } = req.body;
+
+    if (!name) {
+        throw new Error('Validation error: TodoList.name cannot be null');
+    }
+
+    await db.TodoList.create({ name });
     res.redirect('/');
 };
