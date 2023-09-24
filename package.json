@@ -1,0 +1,29 @@
+{
+  "name": "todo_app_nodejs_back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "NODE_ENV=production node app",
+    "dev": "nodemon app",
+    "migrate:up": "sequelize-cli db:migrate",
+    "migrate:undo": "sequelize-cli db:migrate:undo"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "Petro Tsapei",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "pg": "^8.11.3",
+    "pug": "^3.0.2",
+    "sequelize": "^6.33.0",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "sequelize-cli": "^6.6.1"
+  }
+}

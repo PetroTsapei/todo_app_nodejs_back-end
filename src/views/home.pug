@@ -1,0 +1,7 @@
+extends ./layout
+block content
+    .content
+        h2 Add a task
+        form(action='/add', method='POST', class='add-todo-form')
+            input(type='text', name='name', placeholder='Type your task name...', autofocus)
+            button(type='submit') Add

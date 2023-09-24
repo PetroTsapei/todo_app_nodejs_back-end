@@ -1,0 +1,13 @@
+.content {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.add-todo-form {
+    display: flex;
+    gap: 2rem;
+}
+
+.add-todo-form input {
+    width: 100%;
+}
