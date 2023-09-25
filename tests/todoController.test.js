@@ -56,6 +56,60 @@ describe('todo controller', () => {
         })).rejects.toThrow('Validation error: TodoList.name cannot be null');
     });
 
+    it('should complete a todo', async () => {
+        const todo = await db.TodoList.create({ name: 'Test todo' });
+        await todoController.completeTodo({
+            body: {
+                id: todo.id,
+            },
+        }, {
+            redirect: (path) => {
+                expect(path).toBe('/');
+            },
+        });
+        const completedTodo = await db.TodoList.findOne({ where: { id: todo.id } });
+        expect(completedTodo.completed).toBe(true);
+    });
+
+    it('should throw error if complete todo id is empty', async () => {
+        await expect(todoController.completeTodo({
+            body: {
+                id: '',
+            },
+        }, {
+            redirect: (path) => {
+                expect(path).toBe('/');
+            },
+        })).rejects.toThrow('Validation error: TodoList.id cannot be null');
+    });
+
+    it('should delete a todo', async () => {
+        const todo = await db.TodoList.create({ name: 'Test todo' });
+        await todoController.deleteTodo({
+            body: {
+                id: todo.id,
+            },
+        }, {
+            redirect: (path) => {
+                expect(path).toBe('/');
+            },
+        });
+        const deletedTodo = await db.TodoList.findOne({ where: { id: todo.id } });
+        expect(deletedTodo).toBeNull();
+    });
+
+    it('should throw error if delete todo id is empty', async () => {
+        await expect(todoController.deleteTodo({
+            body: {
+                id: '',
+            },
+        }, {
+            redirect: (path) => {
+                expect(path).toBe('/');
+            },
+        })).rejects.toThrow('Validation error: TodoList.id cannot be null');
+    });
+
     afterAll(async () => {
         await db.sequelize.close();
     });

@@ -19,6 +19,21 @@ h2 {
     flex-direction: column;
 }
 
+.button {
+    border: 1px solid;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.green-button {
+    background-color: #4CAF50;
+}
+
+.red-button {
+    background-color: #ff8a8a;
+}
+
 .add-todo-form {
     display: flex;
     gap: 2rem;
@@ -37,9 +52,26 @@ h2 {
 }
 
 .tasks ol {
-    padding: 0 0 10px;
+    padding: 0;
+    gap: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.todo-name {
+.tasks ol:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.task-name {
     text-decoration: underline;
+}
+
+.task-name-completed {
+    text-decoration: line-through;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
 }

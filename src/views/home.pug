@@ -3,11 +3,19 @@ block content
     .content
         h2 Add a task
         form(action='/add', method='POST', class='add-todo-form')
-            input(type='text', name='name', placeholder='Type your task name...', autofocus)
-            button(type='submit') Add
+            input(type='text', name='name', placeholder='Type your task name...', autofocus, required)
+            button(type='submit', class='button green-button') Add
 
         h2 To Do List
         ul.tasks
             each todo in todolist
                 ol
-                    span.todo-name= todo.name
+                    span(class=todo.completed ? 'task-name-completed': 'task-name')= todo.name
+                    .action-buttons
+                        if !todo.completed
+                            form(action='/complete', method='POST')
+                                input(type='hidden', name='id', value=todo.id)
+                                button(type='submit', class='button green-button') Complete
+                        form(action='/delete', method='POST')
+                            input(type='hidden', name='id', value=todo.id)
+                            button(type='submit', class='button red-button') Delete
