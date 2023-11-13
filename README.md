@@ -4,8 +4,15 @@ This is a simple todo app back-end made with nodejs and express.
 
 ## Requirements:
 
-- Git
-- Nodejs >= 18
+- [Git] >= 2.37.1
+  ### Running the app with docker
+  - [Docker]
+    - Docker desktop >= 4.24.0
+    - Engine >= 24.0.6
+    - Compose >= 2.22.0
+  ### Running the app on local machine
+  - [Nodejs] = 18.x.x
+  - [PostgreSQL] = 15.x.x
 
 ## Getting started
 
@@ -17,21 +24,63 @@ This is a simple todo app back-end made with nodejs and express.
   cd todo_app_nodejs_back-end
 ```
 
-- Install dependencies
-
-```bash
-  npm install
-```
-
 - Create a .env file in the root directory based on the .env.example file
 
 ```bash
   cp .env.example .env 
 ```
 
+### ENV variables
+| Name | Example | Description |
+| --- | --- | --- |
+| PORT | 3000 | Port where app will be served |
+| DB_USERNAME | admin | Database user name |
+| DB_PASSWORD | password | Database password |
+| DB_NAME | database | Database name |
+| DB_HOST | localhost | Database host.<br />`host.docker.internal` if run app with docker |
+
+## Running with Docker
+- Run the app
+
+```bash
+# start
+docker-compose up
+
+# stop
+press Ctrl-C
+
+#remove
+docker-compose down
+
+#rebuild
+docker-compose up --build
+```
+
+- Run the app in the background mode
+
+```bash
+#start
+docker-compose up -d
+
+#stop
+docker-compose stop
+
+#remove
+docker-compose down
+
+#rebuild
+docker-compose up --build -d
+```
+
 ## Running in development mode
 
 - Provide sqlite database variables to the .env file
+
+- Install dependencies
+
+```bash
+  npm install
+```
 
 - Run the migrations
 
@@ -48,6 +97,12 @@ This is a simple todo app back-end made with nodejs and express.
 ## Running in production mode
 
 - Create postgres database and add the database variables to the .env file
+
+- Install dependencies
+
+```bash
+  npm install
+```
 
 - Run the migrations
 
@@ -74,3 +129,8 @@ This is a simple todo app back-end made with nodejs and express.
 ```bash
   http://localhost:3000
 ```
+
+[Git]: https://git-scm.com/
+[Docker]: https://www.docker.com/get-started/
+[Nodejs]: https://nodejs.org/dist/v18.17.1/
+[PostgreSQL]: https://www.postgresql.org/ftp/source/v15.2/
