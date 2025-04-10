@@ -130,6 +130,11 @@ docker-compose up --build -d
   http://localhost:3000
 ```
 
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Author
+Petro Kovalchuk
+
 [Git]: https://git-scm.com/
 [Docker]: https://www.docker.com/get-started/
 [Nodejs]: https://nodejs.org/dist/v18.17.1/
