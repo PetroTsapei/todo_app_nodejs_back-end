@@ -7,6 +7,7 @@ router.get('/', todoController.getTodos);
 router.post('/add', todoController.createTodo);
 router.post('/delete', todoController.deleteTodo);
 router.post('/complete', todoController.completeTodo);
+router.post('/update', todoController.updateTodo);
 
 router.use((req, res) => {
     res.status(404).render('404');

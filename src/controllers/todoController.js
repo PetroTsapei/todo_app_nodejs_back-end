@@ -38,3 +38,28 @@ exports.deleteTodo = async (req, res) => {
     await db.TodoList.destroy({ where: { id } });
     res.redirect('/');
 };
+
+exports.updateTodo = async (req, res) => {
+    const { id, name, completed } = req.body;
+
+    if (!id) {
+        throw new Error('Validation error: TodoList.id cannot be null');
+    }
+
+    const todo = await db.TodoList.findOne({ where: { id } });
+
+    if (!todo) {
+        throw new Error('Todo not found');
+    }
+
+    if (name !== undefined) {
+        todo.name = name;
+    }
+
+    if (completed !== undefined) {
+        todo.completed = completed;
+    }
+
+    await todo.save();
+    res.redirect('/');
+};

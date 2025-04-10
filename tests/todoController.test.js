@@ -110,6 +110,26 @@ describe('todo controller', () => {
         })).rejects.toThrow('Validation error: TodoList.id cannot be null');
     });
 
+    it('should update a todo', async () => {
+        const todo = await db.TodoList.create({ name: 'Old name' });
+
+        await todoController.updateTodo({
+            body: {
+                id: todo.id,
+                name: 'New name',
+                completed: true,
+            },
+        }, {
+            redirect: (path) => {
+                expect(path).toBe('/');
+            },
+        });
+
+        const updatedTodo = await db.TodoList.findOne({ where: { id: todo.id } });
+        expect(updatedTodo.name).toBe('New name');
+        expect(updatedTodo.completed).toBe(true);
+    });
+
     afterAll(async () => {
         await db.sequelize.close();
     });
