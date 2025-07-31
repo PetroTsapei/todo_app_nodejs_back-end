@@ -23,6 +23,10 @@ exports.completeTodo = async (req, res) => {
     }
 
     const todo = await db.TodoList.findOne({ where: { id } });
+    if (!todo) {
+        throw new Error('Todo not found');
+    }
+
     todo.completed = true;
     await todo.save();
     res.redirect('/');

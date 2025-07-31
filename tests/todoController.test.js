@@ -83,6 +83,16 @@ describe('todo controller', () => {
         })).rejects.toThrow('Validation error: TodoList.id cannot be null');
     });
 
+    it('should throw error if todo does not exist', async () => {
+        await expect(todoController.completeTodo({
+            body: {
+                id: 999,
+            },
+        }, {
+            redirect: () => {},
+        })).rejects.toThrow('Todo not found');
+    });
+
     it('should delete a todo', async () => {
         const todo = await db.TodoList.create({ name: 'Test todo' });
         await todoController.deleteTodo({
